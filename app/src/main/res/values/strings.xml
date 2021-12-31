@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">Assignment2</string>
-    <string name="tv1">tv1</string>
-    <string name="tv2" />
+    <string name="tvOne">tvOne</string>
+    <string name="tv2">tv2</string>
+    <string name="gride_view">navigate To Gride View</string>
+    <string name="send">Send lifeCycle logcat</string>
 </resources>

@@ -1,13 +1,11 @@
 package com.example.assignment2;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
-import android.widget.ListAdapter;
 import android.widget.ListView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -17,132 +15,106 @@ import java.util.Date;
 
 public class MainActivity extends AppCompatActivity {
     ListView mListView;
-    ArrayList<cyclecallback> list = new ArrayList<>();
-    Button mGride,msend;
+    ArrayList<CycleCallback> list = new ArrayList<>();
+     android.widget.ListAdapter lAdapter;
+    String currentTime="";
+
+    public  String time(){
+        Calendar cal = Calendar.getInstance();
+        Date currentLocalTime = cal.getTime();
+        DateFormat date = new SimpleDateFormat("HH:mm:ss a");
+
+        return date.format(currentLocalTime);
+    }
+    public void setItem(String state,String time,String description)
+    {
+
+        list.add(new CycleCallback(state,time,description));
+        lAdapter = new ListAdapter(this,R.layout.listview, list);
+        mListView.setAdapter(lAdapter);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        mListView =(ListView) findViewById(R.id.lifecyclelist);
-        mGride = (Button) findViewById(R.id.gride);
-        msend = (Button) findViewById(R.id.sendData);
+        mListView = findViewById(R.id.lifecycleList);
+        Button mGride = findViewById(R.id.mGride);
+        Button mSend = findViewById(R.id.btnDataSend);
 
-        Calendar cal = Calendar.getInstance();
-        Date currentLocalTime = cal.getTime();
-        DateFormat date = new SimpleDateFormat("HH:mm:ss a");
-        String currentTime = date.format(currentLocalTime);
+        currentTime = time();
+        setItem("onCreate",currentTime,"Activity is Created.");
 
-        list.add(new cyclecallback("onCreate",currentTime));
-        ListAdapter adapter = new arrayAdapter(this, R.layout.listview, list);
-        mListView.setAdapter(adapter);
+        mGride.setOnClickListener(v -> {
 
-        mGride.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                Intent intent = new Intent(MainActivity.this, grideview.class);
-                Bundle bundle = new Bundle();
-                bundle.putSerializable("callback",list);
-                intent.putExtra("data", bundle);
-                startActivity(intent);
-            }
+            Intent intent = new Intent(MainActivity.this, GrideviewActivity.class);
+            Bundle bundle = new Bundle();
+            bundle.putSerializable("callback",list);
+            intent.putExtra("data", bundle);
+            startActivity(intent);
         });
 
 
-        msend.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        mSend.setOnClickListener(v -> {
 
-                String s = new String() ;
-                for (cyclecallback i: list)
-                    s += "[ "+i.getEvent()+" invoke at "+i.getTime()+".]";
+            StringBuilder s = new StringBuilder();
+            for (CycleCallback i: list)
+                s.append("{ ").append(i.getEvent()).append(" invoke at ").append(i.getTime()).append(".}");
 
-                Intent intent = new Intent(Intent.ACTION_SEND);
-                intent.putExtra(Intent.EXTRA_TEXT,s);
-                intent.setType("text/plain");
-                startActivity(intent);
-            }
+            Intent intent = new Intent(Intent.ACTION_SEND);
+            intent.putExtra(Intent.EXTRA_TEXT, s.toString());
+            intent.setType("text/plain");
+            startActivity(intent);
         });
     }
     @Override
     protected void onStart() {
         super.onStart();
-        mListView =(ListView) findViewById(R.id.lifecyclelist);
-        Calendar cal = Calendar.getInstance();
-        Date currentLocalTime = cal.getTime();
-        DateFormat date = new SimpleDateFormat("HH:mm:ss a");
-        String currentTime = date.format(currentLocalTime);
-        list.add(new cyclecallback("onStart",currentTime));
-        ListAdapter adapter = new arrayAdapter (this,R.layout.listview, list);
-        mListView.setAdapter(adapter);
 
+        currentTime = time();
+        setItem("onStart",currentTime,"Activity is visible now.");
     }
 
     @Override
     protected void onRestart() {
         super.onRestart();
-        mListView =(ListView) findViewById(R.id.lifecyclelist);
-        Calendar cal = Calendar.getInstance();
-        Date currentLocalTime = cal.getTime();
-        DateFormat date = new SimpleDateFormat("HH:mm:ss a");
-        String currentTime = date.format(currentLocalTime);
-        list.add(new cyclecallback("onRestart",currentTime));
-        ListAdapter adapter = new arrayAdapter(this, R.layout.listview, list) ;
-        mListView.setAdapter(adapter);
+
+        currentTime = time();
+        setItem("onRestart",currentTime,"Activity start again.");
 
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        mListView =(ListView) findViewById(R.id.lifecyclelist);
-        Calendar cal = Calendar.getInstance();
-        Date currentLocalTime = cal.getTime();
-        DateFormat date = new SimpleDateFormat("HH:mm:ss a");
-        String currentTime = date.format(currentLocalTime);
-        list.add(new cyclecallback("activity is now user interactable and comes in forground state",currentTime));
-        ListAdapter adapter = new arrayAdapter (this, R.layout.listview, list);
-        mListView.setAdapter(adapter);
+
+        currentTime = time();
+        setItem("onResume",currentTime,"Activity is user interctebale.");
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        mListView =(ListView) findViewById(R.id.lifecyclelist);
-        Calendar cal = Calendar.getInstance();
-        Date currentLocalTime = cal.getTime();
-        DateFormat date = new SimpleDateFormat("HH:mm:ss a");
-        String currentTime = date.format(currentLocalTime);
-        list.add(new cyclecallback("activity goes in background state",currentTime));
-        ListAdapter adapter = new arrayAdapter (this, R.layout.listview, list);
-        mListView.setAdapter(adapter);
+
+        currentTime = time();
+        setItem("onPause",currentTime,"Activity is in background.");
 
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        mListView =(ListView) findViewById(R.id.lifecyclelist);
-        Calendar cal = Calendar.getInstance();
-        Date currentLocalTime = cal.getTime();
-        DateFormat date = new SimpleDateFormat("HH:mm:ss a");
-        String currentTime = date.format(currentLocalTime);
-        list.add(new cyclecallback("activity is killed but store in chashe memory",currentTime));
-        ListAdapter adapter = new arrayAdapter (this, R.layout.listview, list);
-        mListView.setAdapter(adapter);
+
+        currentTime = time();
+        setItem("onStop",currentTime,"Activity not visible now.");
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        mListView =(ListView) findViewById(R.id.lifecyclelist);
-        Calendar cal = Calendar.getInstance();
-        Date currentLocalTime = cal.getTime();
-        DateFormat date = new SimpleDateFormat("HH:mm:ss a");
-        String currentTime = date.format(currentLocalTime);
-        list.add(new cyclecallback("onDestroy",currentTime));
-        ListAdapter adapter = new arrayAdapter (this,R.layout.listview, list);
-        mListView.setAdapter(adapter);
+
+        currentTime = time();
+        setItem("onDestroy",currentTime,"Activity closed.");
     }
 
 

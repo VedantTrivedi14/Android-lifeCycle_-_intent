@@ -1,5 +1,6 @@
 package com.example.assignment2;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,17 +13,13 @@ import androidx.annotation.Nullable;
 
 import java.util.List;
 
-public class arrayAdapter extends ArrayAdapter<cyclecallback> {
+public class ListAdapter extends ArrayAdapter<CycleCallback> {
 
-    private int resource;
-    private Context Con;
-
-    public arrayAdapter(@NonNull Context context, int resource, List<cyclecallback> object) {
+    public ListAdapter(@NonNull Context context, int resource, List<CycleCallback> object) {
         super(context, resource, object);
-        this.resource = resource;
-        this.Con = context;
     }
 
+    @SuppressLint("InflateParams")
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
@@ -33,7 +30,7 @@ public class arrayAdapter extends ArrayAdapter<cyclecallback> {
             LayoutInflater layoutInflater = LayoutInflater.from(getContext());
             view = layoutInflater.inflate(R.layout.listview, null);
         }
-        cyclecallback text = getItem(position);
+        CycleCallback text = getItem(position);
 
 
         if (text != null){
