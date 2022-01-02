@@ -1,5 +1,6 @@
 package com.example.assignment2;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
@@ -16,21 +17,19 @@ import java.util.Date;
 public class MainActivity extends AppCompatActivity {
     ListView mListView;
     ArrayList<CycleCallback> list = new ArrayList<>();
-     android.widget.ListAdapter lAdapter;
-    String currentTime="";
+    android.widget.ListAdapter lAdapter;
+    String currentTime = "";
 
-    public  String time(){
+    public String time() {
         Calendar cal = Calendar.getInstance();
         Date currentLocalTime = cal.getTime();
-        DateFormat date = new SimpleDateFormat("HH:mm:ss a");
-
+        @SuppressLint("SimpleDateFormat") DateFormat date = new SimpleDateFormat("HH:mm:ss a");
         return date.format(currentLocalTime);
     }
-    public void setItem(String state,String time,String description)
-    {
 
-        list.add(new CycleCallback(state,time,description));
-        lAdapter = new ListAdapter(this,R.layout.listview, list);
+    public void setItem(String time, String description) {
+        list.add(new CycleCallback(time, description));
+        lAdapter = new ListAdapter(this, R.layout.listview, list);
         mListView.setAdapter(lAdapter);
     }
 
@@ -43,22 +42,21 @@ public class MainActivity extends AppCompatActivity {
         Button mSend = findViewById(R.id.btnDataSend);
 
         currentTime = time();
-        setItem("onCreate",currentTime,"Activity is Created.");
+        setItem(currentTime, "onCreate:Activity is Created.");
 
         mGride.setOnClickListener(v -> {
 
             Intent intent = new Intent(MainActivity.this, GrideviewActivity.class);
             Bundle bundle = new Bundle();
-            bundle.putSerializable("callback",list);
+            bundle.putSerializable("callback", list);
             intent.putExtra("data", bundle);
             startActivity(intent);
         });
 
-
         mSend.setOnClickListener(v -> {
 
             StringBuilder s = new StringBuilder();
-            for (CycleCallback i: list)
+            for (CycleCallback i : list)
                 s.append("{ ").append(i.getEvent()).append(" invoke at ").append(i.getTime()).append(".}");
 
             Intent intent = new Intent(Intent.ACTION_SEND);
@@ -67,54 +65,47 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
         });
     }
+
     @Override
     protected void onStart() {
         super.onStart();
-
         currentTime = time();
-        setItem("onStart",currentTime,"Activity is visible now.");
+        setItem(currentTime, "onStart:Activity is visible now.");
     }
 
     @Override
     protected void onRestart() {
         super.onRestart();
-
         currentTime = time();
-        setItem("onRestart",currentTime,"Activity start again.");
-
+        setItem(currentTime, "onRetart:Activity start again.");
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-
         currentTime = time();
-        setItem("onResume",currentTime,"Activity is user interctebale.");
+        setItem(currentTime, "onResume:Activity is user interctebale.");
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-
         currentTime = time();
-        setItem("onPause",currentTime,"Activity is in background.");
-
+        setItem(currentTime, "onPause:Activity is in background.");
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-
         currentTime = time();
-        setItem("onStop",currentTime,"Activity not visible now.");
+        setItem(currentTime, "onStop:Activity not visible now.");
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-
         currentTime = time();
-        setItem("onDestroy",currentTime,"Activity closed.");
+        setItem(currentTime, "onDestroy:Activity closed.");
     }
 
 

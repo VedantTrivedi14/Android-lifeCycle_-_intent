@@ -1,10 +1,10 @@
 package com.example.assignment2;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.GridView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
 
@@ -20,7 +20,7 @@ public class GrideviewActivity extends AppCompatActivity {
 
 
         GridView gridView = findViewById(R.id.gridView);
-        ListAdapter adapter = new ListAdapter(this, R.layout.listview,callback);
+        ListAdapter adapter = new ListAdapter(this, R.layout.listview, callback);
         gridView.setAdapter(adapter);
     }
 }

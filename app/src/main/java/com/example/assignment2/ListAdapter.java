@@ -33,7 +33,7 @@ public class ListAdapter extends ArrayAdapter<CycleCallback> {
         CycleCallback text = getItem(position);
 
 
-        if (text != null){
+        if (text != null) {
             TextView t1 = view.findViewById(R.id.tv1);
             TextView t2 = view.findViewById(R.id.tv2);
             t1.setText(text.getEvent());

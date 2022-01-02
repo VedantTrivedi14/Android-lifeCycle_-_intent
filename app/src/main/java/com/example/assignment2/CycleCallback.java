@@ -14,7 +14,7 @@ public class CycleCallback implements Serializable {
         return Timestamp;
     }
 
-    public CycleCallback(String state, String callback, String time) {
+    public CycleCallback(String callback, String time) {
         Callback = callback;
         Timestamp = time;
     }
