@@ -1,18 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_weight="2">
+    android:layout_weight="2"
+    android:orientation="vertical">
 
     <TextView
         android:id="@+id/tv1"
-        style="@style/tvStyle"
-        android:layout_width="@dimen/layout_width" />
+        style="@style/tvStyle" />
 
     <TextView
         android:id="@+id/tv2"
-        style="@style/tvStyle"
-        android:layout_width="@dimen/layout_width"
-        android:layout_row="0"
-        android:layout_column="1" />
-</GridLayout>
+        style="@style/tvStyle" />
+</LinearLayout>

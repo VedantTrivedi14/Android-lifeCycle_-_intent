@@ -17,10 +17,7 @@ import java.util.Date;
 public class MainActivity extends AppCompatActivity {
     ListView mListView;
     ArrayList<CycleCallback> list = new ArrayList<>();
-    android.widget.ListAdapter lAdapter;
-    String currentTime = "";
-
-    public String time() {
+    public String Localtime() {
         Calendar cal = Calendar.getInstance();
         Date currentLocalTime = cal.getTime();
         @SuppressLint("SimpleDateFormat") DateFormat date = new SimpleDateFormat("HH:mm:ss a");
@@ -29,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void setItem(String time, String description) {
         list.add(new CycleCallback(time, description));
-        lAdapter = new ListAdapter(this, R.layout.listview, list);
+        ListAdapter lAdapter = new ListAdapter(this, R.layout.listview, list);
         mListView.setAdapter(lAdapter);
     }
 
@@ -41,8 +38,8 @@ public class MainActivity extends AppCompatActivity {
         Button mGride = findViewById(R.id.mGride);
         Button mSend = findViewById(R.id.btnDataSend);
 
-        currentTime = time();
-        setItem(currentTime, "onCreate:Activity is Created.");
+
+        setItem(Localtime(), "onCreate:Activity is Created.");
 
         mGride.setOnClickListener(v -> {
 
@@ -69,43 +66,43 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        currentTime = time();
-        setItem(currentTime, "onStart:Activity is visible now.");
+
+        setItem(Localtime(), "onStart:Activity is visible now.");
     }
 
     @Override
     protected void onRestart() {
         super.onRestart();
-        currentTime = time();
-        setItem(currentTime, "onRetart:Activity start again.");
+
+        setItem(Localtime(), "onRetart:Activity start again.");
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        currentTime = time();
-        setItem(currentTime, "onResume:Activity is user interctebale.");
+
+        setItem(Localtime(), "onResume:Activity is user interctebale.");
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        currentTime = time();
-        setItem(currentTime, "onPause:Activity is in background.");
+
+        setItem(Localtime(), "onPause:Activity is in background.");
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        currentTime = time();
-        setItem(currentTime, "onStop:Activity not visible now.");
+
+        setItem(Localtime(), "onStop:Activity not visible now.");
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        currentTime = time();
-        setItem(currentTime, "onDestroy:Activity closed.");
+
+        setItem(Localtime(), "onDestroy:Activity closed.");
     }
 
 

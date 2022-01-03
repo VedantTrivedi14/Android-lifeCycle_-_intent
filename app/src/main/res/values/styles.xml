@@ -5,12 +5,15 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">match_parent</item>
         <item name="android:numColumns">2</item>
+        <item name="android:horizontalSpacing">2dp</item>
+        <item name="android:verticalSpacing">10dp</item>
     </style>
 
     <style name="tvStyle">
+        <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="fontFamily">sans-serif-black</item>
-        <item name="android:padding">@dimen/padding</item>
+        <item name="android:layout_margin">@dimen/padding</item>
         <item name="android:textSize">@dimen/textSize</item>
     </style>
 
