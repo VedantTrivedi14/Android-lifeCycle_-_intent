@@ -35,15 +35,15 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mListView = findViewById(R.id.lifecycleList);
-        Button mGride = findViewById(R.id.mGride);
+        Button mGrid = findViewById(R.id.mGrid);
         Button mSend = findViewById(R.id.btnDataSend);
 
 
         setItem(Localtime(), "onCreate:Activity is Created.");
 
-        mGride.setOnClickListener(v -> {
+        mGrid.setOnClickListener(v -> {
 
-            Intent intent = new Intent(MainActivity.this, GrideviewActivity.class);
+            Intent intent = new Intent(MainActivity.this, GridViewActivity.class);
             Bundle bundle = new Bundle();
             bundle.putSerializable("callback", list);
             intent.putExtra("data", bundle);
@@ -74,14 +74,14 @@ public class MainActivity extends AppCompatActivity {
     protected void onRestart() {
         super.onRestart();
 
-        setItem(Localtime(), "onRetart:Activity start again.");
+        setItem(Localtime(), "onRestart:Activity start again.");
     }
 
     @Override
     protected void onResume() {
         super.onResume();
 
-        setItem(Localtime(), "onResume:Activity is user interctebale.");
+        setItem(Localtime(), "onResume:user can interact with UI.");
     }
 
     @Override

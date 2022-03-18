@@ -8,15 +8,15 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
 
-public class GrideviewActivity extends AppCompatActivity {
+public class GridViewActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_grideview);
         Intent intent = getIntent();
-        Bundle Bundle = intent.getBundleExtra("data");
-        ArrayList<CycleCallback> callback = (ArrayList<CycleCallback>) Bundle.getSerializable("callback");
+        Bundle bundle = intent.getBundleExtra("data");
+        ArrayList<CycleCallback> callback = (ArrayList<CycleCallback>) bundle.getSerializable("callback");
 
 
         GridView gridView = findViewById(R.id.gridView);

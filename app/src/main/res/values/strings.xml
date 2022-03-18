@@ -2,6 +2,6 @@
     <string name="app_name">Assignment2</string>
     <string name="tvOne">tvOne</string>
     <string name="tv2">tv2</string>
-    <string name="gride_view">Gride View</string>
+    <string name="grid_view">Grid View</string>
     <string name="send">Send</string>
 </resources>

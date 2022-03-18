@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    style="@style/framestyle"
+    style="@style/frameStyle"
     tools:context=".MainActivity">
 
     <LinearLayout
@@ -22,9 +22,9 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/mGride"
+            android:id="@+id/mGrid"
             style="@style/ButtonStyle"
-            android:text="@string/gride_view"
+            android:text="@string/grid_view"
             tools:ignore="ButtonStyle" />
 
         <Button
