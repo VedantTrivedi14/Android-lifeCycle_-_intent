@@ -1,38 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     style="@style/frameStyle"
     tools:context=".MainActivity">
 
-    <LinearLayout
+    <ListView
+        android:id="@+id/lifecycleList"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@id/mGrid"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <ListView
-            android:id="@+id/lifecycleList"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-    </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        android:orientation="horizontal">
+    <Button
+        android:id="@+id/mGrid"
+        style="@style/ButtonStyle"
+        android:text="@string/grid_view"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/btnDataSend"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="ButtonStyle" />
 
-        <Button
-            android:id="@+id/mGrid"
-            style="@style/ButtonStyle"
-            android:text="@string/grid_view"
-            tools:ignore="ButtonStyle" />
+    <Button
+        android:id="@+id/btnDataSend"
+        style="@style/ButtonStyle"
+        android:text="@string/send"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/mGrid"
+        tools:ignore="ButtonStyle" />
 
-        <Button
-            android:id="@+id/btnDataSend"
-            style="@style/ButtonStyle"
-            android:text="@string/send"
-            tools:ignore="ButtonStyle" />
-    </LinearLayout>
 
-</FrameLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
 

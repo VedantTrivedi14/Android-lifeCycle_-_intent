@@ -34,8 +34,8 @@ public class ListAdapter extends ArrayAdapter<CycleCallback> {
 
 
         if (text != null) {
-            TextView t1 = view.findViewById(R.id.tv1);
-            TextView t2 = view.findViewById(R.id.tv2);
+            TextView t1 = view.findViewById(R.id.txtTime);
+            TextView t2 = view.findViewById(R.id.txtMsg);
             t1.setText(text.getEvent());
             t2.setText(text.getTime());
 
